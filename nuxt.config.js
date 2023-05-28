@@ -20,15 +20,17 @@ export default {
       {
         name: 'about',
         path: '/about',
-        component: '@/pages/About.vue' // Use @ to indicate the project root directory
+        component: './pages/About.vue'
       },
       {
         name: 'secret',
         path: '/secret',
-        component: '@/pages/Secret.vue' // Use @ to indicate the project root directory
+        component: './pages/Secret.vue'
       },
       {
-        name: ''
+        name: 'projects',
+        path: '/projects',
+        component: './pages/Projects'
       }
       // ...
     ]

@@ -1,14 +1,6 @@
 <template>
-  <div class="container" @keydown="handleKeyPress">
-    <button class="call-sidebar" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave" @click="callSidebarTruthy" :class="{ sidebar }">
-      <img src="../assets/menu.png" alt="menu icon">
-    </button>
-
-    <heading heading="My-Portfolio Thing" />
-    <section v-if="sidebar" ref="sidebar">
-      <button class="exit" @click="callSidebarTruthy">x</button>
-      <side-Menu />
-    </section>
+  <div class="container">
+    <CallSidebar heading="My-Portfolio thing" />
     <section class="sub-container">
       section 3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque
       provident rerum unde quis? Rerum ratione consequatur itaque ad nihil vitae ullam cum
@@ -57,59 +49,8 @@
 
 export default {
   name: "IndexPage",
-  data() {
-      return {
-        sidebar: false,
-        timeout: null,
-        interval: null
-      };
-    },
 
-    methods: {
-    handleKeyPress(event) {
-      if (event.key === "Escape") {
-        this.callSidebarTruthy();
-        }
-      },
-    handleMouseEnter() {
-      this.timeout = setTimeout(() => {
-        this.callSidebarTruthy();
-        this.interval = setInterval(() => {
-          if (!this.isMouseOverElement(this.$el)) {
-            this.handleMouseLeave();
-          }
-        }, 100);
-      }, 3000);
-    },
-    handleMouseLeave() {
-      clearTimeout(this.timeout);
-      clearInterval(this.interval);
-    },
-    callSidebarTruthy() {
-      this.sidebar = !this.sidebar;
-    },
-    isMouseOverElement(element) {
-      const rect = element.getBoundingClientRect();
-      const { clientX, clientY } = this.mouseEvent;
-      return (
-        clientX >= rect.left &&
-        clientX <= rect.right &&
-        clientY >= rect.top &&
-        clientY <= rect.bottom
-      );
-    },
-    mounted() {
-      this.$el.addEventListener('mousemove', (event) => {
-        this.mouseEvent = event;
-      });
-    },
-    beforeDestroy() {
-      clearTimeout(this.timeout);
-      clearInterval(this.interval);
-    }
-  }
 };
 </script>
 
-<style>
-</style>
+<style></style>
